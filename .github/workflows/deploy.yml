@@ -48,15 +48,8 @@ jobs:
       - name: Build the app
         run: npm run build
 
-      - name: create artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: react-build
-          path: dist/
-          retention-days: 7
-
       - name: "Install vercel cli"
         run: npm install --global vercel
 
       - name: deployment on vercel
-        run: vercel deploy dist --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
