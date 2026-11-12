@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { getCatalog } from "@/src/lib/catalog";
-import SearchSort from "@/src/components/shop/SearchSort";
+import { Suspense } from "react";
+import ShopContent from "./ShopContent";
+// import SearchSort from "@/src/components/shop/SearchSort";
 
 interface Props {
   searchParams: Promise<{
@@ -9,26 +9,29 @@ interface Props {
   }>;
 }
 export default async function ShopPage({ searchParams }: Props) {
-  const { q = "", sort = "name" } = await searchParams;
+  // const { q = "", sort = "name" } = await searchParams;
 
-  const products = await getCatalog();
+  // const products = await getCatalog();
 
-  const filtered = products.filter((product) =>
-    product.name.toLowerCase().includes(q.toLowerCase()),
-  );
+  // const filtered = products.filter((product) =>
+  //   product.name.toLowerCase().includes(q.toLowerCase()),
+  // );
 
-  if (sort === "pasc") {
-    filtered.sort((a, b) => a.priceCents - b.priceCents);
-  } else if (sort === "pdesc") {
-    filtered.sort((a, b) => b.priceCents - a.priceCents);
-  } else {
-    filtered.sort((a, b) => a.name.localeCompare(b.name));
-  }
+  // if (sort === "pasc") {
+  //   filtered.sort((a, b) => a.priceCents - b.priceCents);
+  // } else if (sort === "pdesc") {
+  //   filtered.sort((a, b) => b.priceCents - a.priceCents);
+  // } else {
+  //   filtered.sort((a, b) => a.name.localeCompare(b.name));
+  // }
 
   return (
     <main className="mx-auto max-w-6xl p-8">
       <h1 className="mb-6 text-3xl font-bold">Shop Catalogue</h1>
-      <SearchSort q={q} sort={sort} />
+      <Suspense fallback={<p>Loading products...</p>}>
+        <ShopContent searchParams={searchParams} />
+      </Suspense>
+      {/* <SearchSort q={q} sort={sort} />
       <div className="mt-8 grid gap-5 sm:grid-cols-2 lg: grid-cols-3">
         {filtered.length === 0 ? (
           <p>No items match</p>
@@ -49,7 +52,7 @@ export default async function ShopPage({ searchParams }: Props) {
             </Link>
           ))
         )}
-      </div>
+      </div> */}
     </main>
   );
 }
