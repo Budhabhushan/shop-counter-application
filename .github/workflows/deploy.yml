@@ -49,3 +49,9 @@ jobs:
           name: react-build
           path: dist/
           retention-days: 7
+
+      - name: "Install vercel cli"
+        run: npm install --global vercel
+
+      - name: deployment on vercel
+        run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
