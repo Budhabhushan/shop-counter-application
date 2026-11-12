@@ -27,6 +27,11 @@ jobs:
   build_job:
     needs: [deploy-job]
     runs-on: ubuntu-latest
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets['VERCEL_PROJECT_ID'] }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
