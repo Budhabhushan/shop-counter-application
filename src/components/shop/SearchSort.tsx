@@ -54,8 +54,8 @@ export default function SearchSort({ q, sort }: Props) {
           className="ml-2 rounded border p-2"
         >
           <option value="name">Name</option>
-          <option value="pasc">Price Low to High</option>
-          <option value="pdesc">Price High to Low</option>
+          <option value="price-asc">Price Low to High</option>
+          <option value="price-desc">Price High to Low</option>
         </select>
       </div>
     </div>

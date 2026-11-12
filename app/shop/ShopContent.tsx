@@ -17,11 +17,11 @@ export default async function ShopContent({
   const filteredProducts = products
     .filter((product) => product.name.toLowerCase().includes(q.toLowerCase()))
     .sort((a, b) => {
-      if (sort === "pasc") {
+      if (sort === "price-asc") {
         return a.priceCents - b.priceCents;
       }
 
-      if (sort === "pdesc") {
+      if (sort === "price-desc") {
         return b.priceCents - a.priceCents;
       }
 
