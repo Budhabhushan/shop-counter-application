@@ -1,5 +1,7 @@
 name: "Deploy Workflow"
-on: push
+on:
+  push:
+  pull_request:
 jobs:
   deploy-job:
     runs-on: ubuntu-latest
