@@ -1,0 +1,84 @@
+1. Server and Client Componentes
+   The application uses Next.js App Route.
+
+Shop Catalogue
+The /shop and /shop/[sku] pages use Server Components. They retirve catalogue information through the shared getCatalog() function
+
+The search and sort contorls use Client Component beacuse they require browser interactions and URL navigation.
+
+Staff Desk
+The staff desk uses a Client Component for form interactions, payment previews, and displaying payment queue updates.
+
+The actual validation, payment recording, and stock updates happen on the server through route handlers.
+
+Checkout
+The checkout interface uses a Client Component for cart state, quantity updates, and displaying payment progress.
+
+The server creates the immutable payment snapshot and uses that snapshot to create the final order.
+
+2. Caching Strategy
+   The catalogue is cached independently using Next.js unstable_cache with a catalog cache tag.
+
+The shop page reads URL search parameters, so it can render dynamically while reusing the cached catalog data.
+
+The getCatalog() function increments the catalogue read counter only when the cached function executes.
+
+After a successful staff payment, the catalogue cache is invalidated using revalidateTag.
+
+This ensures the next catalogue request retrieves updated stock information.
+
+The /api/catalog endpoint reads the live in-memory store directly and does not use the cached catalog function
+
+3. URL-Based Search and Sorting
+   Search and sorting values are stored in URL query paramenters.
+
+For example:
+/shop?q=lamp&sort=price-desc
+
+This makes filters shareable, reload-safe, and compatible with browser navigation.
+
+The server reads the query parameters and filters/sorts the cached catalogue.
+
+4. Immutable Checkout Snapshot
+   The browser sends product SKUs and quantities to the checkout begin endpoint.
+
+The server ignores client-provided prices and calculates the amount using its own catalogue.
+
+It stores an immutable checkout attempt containg product names, prices, quantites, and total amount.
+
+When payment completes, the server retrives the original attempt and creates the order from that stored snapshot
+
+This prevents subsequent cart changes or manipulated client prices from changing the amount charged.
+
+5. Multi-Instance Limitations
+
+The current implementation uses an in-memory store.
+
+This is suitable for the assignment but has limitatons when deployed to multiple serverless instance
+
+Different instances can have different stock counts, payment queues, checkout attempts, and complete orders.
+
+An instance restart also resets all data.
+
+For a production implementation, I would use PostgresSQL or MySQL or another transctional database for persistent storage, Redis for distributed caching where appropriate, and database transactions with unique constraints for payment idempotency
+
+6. Accessibility
+   I use semantic HTML elements, associated labels for form inputs, accessible button names, and appropriate headings.
+
+Validation messages and status updates are exposed through accessible regions.
+
+I verify the interface using keyboard navigation and Playwrite tests, including the URL-based search flow.
+
+7. Trade-offs
+   The implementation prioritizes correctness, predictable server-side behavior, and testability over visual complexity.
+
+The in-memory implementation intentionally demonstrates the limitations of process-local state in a distributed deployment.
+
+8. E2E Testing – Playwright
+   I would also like to be transparent about my experience with Playwright. I currently have limited hands-on experience with the Playwright E2E testing library. However, I understand the importance of automated testing and have made an effort to include E2E test cases as part of this assignment.
+
+To implement the test cases, I used ChatGPT as a reference and learning assistant to understand Playwright's syntax, testing approach, and implementation patterns. I reviewed and adapted the generated suggestions to align with the application's functionality.
+
+I see this as a learning opportunity to strengthen my practical experience with Playwright and automated testing.
+
+My focus throughout this assignment was to demonstrate my React/Next.js development skills, problem-solving approach, component design, application structure, and ability to learn and adapt to new technologies.

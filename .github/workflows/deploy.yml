@@ -1,5 +1,7 @@
 name: "Deploy Workflow"
-on: push
+on:
+  push:
+  pull_request:
 jobs:
   deploy-job:
     runs-on: ubuntu-latest
@@ -25,6 +27,11 @@ jobs:
   build_job:
     needs: [deploy-job]
     runs-on: ubuntu-latest
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets['VERCEL_PROJECT_ID'] }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -41,9 +48,8 @@ jobs:
       - name: Build the app
         run: npm run build
 
-      - name: create artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: react-build
-          path: dist/
-          retention-days: 7
+      - name: "Install vercel cli"
+        run: npm install --global vercel
+
+      - name: deployment on vercel
+        run: vercel deploy --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
