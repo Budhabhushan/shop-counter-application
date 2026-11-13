@@ -49,3 +49,27 @@ It stores an immutable checkout attempt containg product names, prices, quantite
 When payment completes, the server retrives the original attempt and creates the order from that stored snapshot
 
 This prevents subsequent cart changes or manipulated client prices from changing the amount charged.
+
+5. Multi-Instance Limitations
+
+The current implementation uses an in-memory store.
+
+This is suitable for the assignment but has limitatons when deployed to multiple serverless instance
+
+Different instances can have different stock counts, payment queues, checkout attempts, and complete orders.
+
+An instance restart also resets all data.
+
+For a production implementation, I would use PostgresSQL or MySQL or another transctional database for persistent storage, Redis for distributed caching where appropriate, and database transactions with unique constraints for payment idempotency
+
+6. Accessibility
+   I use semantic HTML elements, associated labels for form inputs, accessible button names, and appropriate headings.
+
+Validation messages and status updates are exposed through accessible regions.
+
+I verify the interface using keyboard navigation and Playwrite tests, including the URL-based search flow.
+
+7. Trade-offs
+   The implementation prioritizes correctness, predictable server-side behavior, and testability over visual complexity.
+
+The in-memory implementation intentionally demonstrates the limitations of process-local state in a distributed deployment.
