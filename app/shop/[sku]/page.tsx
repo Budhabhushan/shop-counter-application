@@ -5,6 +5,12 @@ import { getCatalog } from "@/src/lib/catalog";
 interface Props {
   params: Promise<{ sku: string }>;
 }
+
+export async function generateStaticParams() {
+  const products = await getCatalog();
+  return products.map(({ sku }) => ({ sku }));
+}
+
 export async function generateMetadata({ params }: Props) {
   const { sku } = await params;
   const products = await getCatalog();
