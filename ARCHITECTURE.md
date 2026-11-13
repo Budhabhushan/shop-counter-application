@@ -73,3 +73,12 @@ I verify the interface using keyboard navigation and Playwrite tests, including 
    The implementation prioritizes correctness, predictable server-side behavior, and testability over visual complexity.
 
 The in-memory implementation intentionally demonstrates the limitations of process-local state in a distributed deployment.
+
+8. E2E Testing – Playwright
+   I would also like to be transparent about my experience with Playwright. I currently have limited hands-on experience with the Playwright E2E testing library. However, I understand the importance of automated testing and have made an effort to include E2E test cases as part of this assignment.
+
+To implement the test cases, I used ChatGPT as a reference and learning assistant to understand Playwright's syntax, testing approach, and implementation patterns. I reviewed and adapted the generated suggestions to align with the application's functionality.
+
+I see this as a learning opportunity to strengthen my practical experience with Playwright and automated testing.
+
+My focus throughout this assignment was to demonstrate my React/Next.js development skills, problem-solving approach, component design, application structure, and ability to learn and adapt to new technologies.

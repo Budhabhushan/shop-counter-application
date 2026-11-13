@@ -140,6 +140,7 @@ export default function Cart() {
               <button
                 onClick={() => addItem(product.sku)}
                 className="rounded bg-blue-600 px-4 py-2 text-white ml-60"
+                aria-label="Add"
               >
                 Add
               </button>

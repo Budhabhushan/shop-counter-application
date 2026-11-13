@@ -45,7 +45,7 @@ Architecture
 See ARCHITECTURE.md.
 
 Time Spent
-Actual time spent: [Letar].
+Actual time spent: I spent approximately 7.5–8 hours completing the application, focusing on implementing the core functionality, maintaining clean and reusable code, and ensuring the application works as expected.
 
 AI Tools
 Tools used: ChatGPT and i have used the GitCopilot to fix the CI/CD Git Hub actions related issues.
