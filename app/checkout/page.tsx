@@ -1,7 +1,10 @@
-export default function Checkout() {
+import Cart from "@/src/components/checkout/Cart";
+
+export default function CheckoutPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Checkout Page</h1>
-    </div>
+    <main className="mx-auto max-w-4xl p-8">
+      <h1 className="mb-6 text-3xl font-bold"> Checkout</h1>
+      <Cart />
+    </main>
   );
 }

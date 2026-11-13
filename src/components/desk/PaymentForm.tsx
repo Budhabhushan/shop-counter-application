@@ -37,8 +37,8 @@ export default function PaymentForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
-
     const data = await response.json();
+    console.log("data", data);
 
     if (!response.ok) {
       setMessage(JSON.stringify(data.errors));
@@ -56,7 +56,7 @@ export default function PaymentForm() {
     });
 
     const data = await response.json();
-
+    console.log("data", data);
     if (!response.ok) {
       setMessage(JSON.stringify(data.errors));
       return;
@@ -125,6 +125,13 @@ export default function PaymentForm() {
           <button
             type="button"
             onClick={handleSubmit(handlePreview)}
+            className="rounded bg-gray-600 px-5 py-2"
+          >
+            Preview
+          </button>
+          <button
+            type="button"
+            onClick={handleSubmit(handleRecord)}
             className="rounded bg-blue-600 px-5 py-2 text-white"
           >
             Record Payment
@@ -135,7 +142,7 @@ export default function PaymentForm() {
       {preview && (
         <section aria-label="Payment preview" className="rounded-xl border p-5">
           <h2 className="text-xl font-bold">Payment preview</h2>
-          <p>Email: {preview.email}</p>
+          <p>Email: {preview?.email}</p>
           <p>Item: {preview.itemName}</p>
           <p>Extra: {preview.extraName ?? "None"}</p>
           <p>Total: ${preview.totalCents / 100}</p>
@@ -151,10 +158,10 @@ export default function PaymentForm() {
         ) : (
           payments.map((payment, index) => (
             <div key={`${payment.externalChargeId}-${index}`}>
-              <p>{preview.email}</p>
-              <p>{preview.itemName}</p>
+              <p>{payment?.email}</p>
+              <p>{payment.itemName}</p>
               <p>${payment.totalCents / 100}</p>
-              <p>Total: ${preview.externalChargeId}</p>
+              <p>Total: ${payment.externalChargeId}</p>
             </div>
           ))
         )}
