@@ -28,7 +28,7 @@ export default async function ShopPage({ searchParams }: Props) {
   return (
     <main className="mx-auto max-w-6xl p-8">
       <h1 className="mb-6 text-3xl font-bold">Shop Catalogue</h1>
-      <Suspense fallback={<p>Loading products...</p>}>
+      <Suspense fallback={<p className="text-center">Loading products...</p>}>
         <ShopContent searchParams={searchParams} />
       </Suspense>
       {/* <SearchSort q={q} sort={sort} />
