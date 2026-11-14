@@ -123,50 +123,58 @@ export default function Cart() {
     : false;
 
   return (
-    <div className="space-y-8">
-      <section>
-        <h2 className="mb-4 text-xl font-bold">Products</h2>
-        {products.map((product) => {
-          const line = cart.find((item) => item.sku === product.sku);
-          return (
-            <div
-              key={product.sku}
-              className="flex items-center justify-between border-b py-4"
-            >
-              <div>
-                <p>{product.name}</p>
-                <p>${product.price / 100}</p>
-              </div>
-              <button
-                onClick={() => addItem(product.sku)}
-                className="rounded bg-blue-600 px-4 py-2 text-white ml-60"
-                aria-label="Add"
+    <div className="mx-auto w-full max-w-xl space-y-6 px-4 py-8 text-zinc-100">
+      <section className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5">
+        <h2 className="mb-2 text-lg font-semibold tracking-tight text-white">
+          Products
+        </h2>
+        <div className="divide-y divide-zinc-800">
+          {products.map((product) => {
+            const line = cart.find((item) => item.sku === product.sku);
+            return (
+              <div
+                key={product.sku}
+                className="flex items-center justify-between gap-4 py-4"
               >
-                Add
-              </button>
-              {line && (
-                <div className="flex items-center gap-2">
-                  <button
-                    aria-label={`Decrease ${product.name}`}
-                    onClick={() => changeQty(product.sku, 1)}
-                  >
-                    -
-                  </button>
-                  <span>{line.qty}</span>
-                  <button
-                    aria-label={`Increase ${product.name}`}
-                    onClick={() => changeQty(product.sku, 1)}
-                  >
-                    +
-                  </button>
-                  <button onClick={() => removeItem(product.sku)}>
-                    Remove
-                  </button>
+                <div className="min-w-0">
+                  <p className="truncate font-medium text-zinc-100">
+                    {product.name}
+                  </p>
+                  <p className="mt-0.5 text-sm tabular-nums text-zinc-400">
+                    ${product.price / 100}
+                  </p>
                 </div>
-              )}
-            </div>
-          );
-        })}
+                <button
+                  onClick={() => addItem(product.sku)}
+                  className="rounded bg-blue-600 px-4 py-2 text-white ml-60"
+                  aria-label="Add"
+                >
+                  Add
+                </button>
+                {line && (
+                  <div className="flex items-center gap-2">
+                    <button
+                      aria-label={`Decrease ${product.name}`}
+                      onClick={() => changeQty(product.sku, 1)}
+                    >
+                      -
+                    </button>
+                    <span>{line.qty}</span>
+                    <button
+                      aria-label={`Increase ${product.name}`}
+                      onClick={() => changeQty(product.sku, 1)}
+                    >
+                      +
+                    </button>
+                    <button onClick={() => removeItem(product.sku)}>
+                      Remove
+                    </button>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </section>
       <section>
         <h2 className="font-bold">Cart Total</h2>
