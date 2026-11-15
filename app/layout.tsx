@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <title>Shop Counter Application</title>
       </head>
-      <body>
+      <body className="flex min-h-screen flex-col">
         <header
           style={{
             padding: 12,
@@ -23,8 +23,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Link href="/desk">Staff Desk</Link>
           </nav>
         </header>
-        {children}
-        <footer style={{ padding: 12, background: "#23201d" }}>
+        <div className="flex-1">{children}</div>
+        <footer
+          style={{ padding: 12, background: "#23201d" }}
+          className="text-white"
+        >
           My Footer
         </footer>
       </body>
