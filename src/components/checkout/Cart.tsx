@@ -176,7 +176,7 @@ export default function Cart() {
           })}
         </div>
       </section>
-      <section>
+      <section className="bg-zinc-900/60 p-5">
         <h2 className="font-bold">Cart Total</h2>
         <p>${total / 100}</p>
       </section>
@@ -186,11 +186,16 @@ export default function Cart() {
       >
         Pay
       </button>
-      {error && <p role="alert"> {error}</p>}
+      {error && (
+        <p role="alert" className="text-black">
+          {" "}
+          {error}
+        </p>
+      )}
       {snapshot && (
         <section
           aria-label="Payment in progress"
-          className="rounded-xl border p-5"
+          className="rounded-xl border p-5 bg-zinc-900/60"
         >
           <h2 className="text-xl font-bold">Payment in porgress</h2>
           {snapshot.lines.map((line) => (
@@ -216,7 +221,7 @@ export default function Cart() {
         </section>
       )}
       {order && (
-        <section className="rounded-xl border p-5">
+        <section className="rounded-xl border p-5 bg-zinc-900/60">
           <h2 className="text-2xl font-bold">Order placed</h2>
           {order.lines.map((line: any) => (
             <p key={line.sku}>

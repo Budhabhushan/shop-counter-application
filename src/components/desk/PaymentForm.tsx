@@ -125,7 +125,7 @@ export default function PaymentForm() {
           <button
             type="button"
             onClick={handleSubmit(handlePreview)}
-            className="rounded bg-gray-600 px-5 py-2"
+            className="rounded bg-gray-600 px-5 py-2 text-white"
           >
             Preview
           </button>

@@ -36,7 +36,7 @@ export default async function ShopContent({
 
           <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filteredProducts.length === 0 ? (
-              <p>No items match</p>
+              <p className="text-white">No items match</p>
             ) : (
               filteredProducts.map((product) => (
                 <Link

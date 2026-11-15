@@ -79,6 +79,8 @@ The in-memory implementation intentionally demonstrates the limitations of proce
 
 To implement the test cases, I used ChatGPT as a reference and learning assistant to understand Playwright's syntax, testing approach, and implementation patterns. I reviewed and adapted the generated suggestions to align with the application's functionality.
 
+To fix the CI/DD pipeline issue i have used claude AI tool the issue is missing package dependencies in the package.lock file.
+
 I see this as a learning opportunity to strengthen my practical experience with Playwright and automated testing.
 
 My focus throughout this assignment was to demonstrate my React/Next.js development skills, problem-solving approach, component design, application structure, and ability to learn and adapt to new technologies.

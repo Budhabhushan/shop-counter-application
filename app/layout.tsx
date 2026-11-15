@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             marginBottom: "5px",
           }}
         >
-          <nav style={{ display: "flex", gap: 12 }}>
+          <nav style={{ display: "flex", gap: 12, color: "white" }}>
             <Link href="/shop">Shop</Link>
             <Link href="/checkout">Checkout</Link>
             <Link href="/desk">Staff Desk</Link>
